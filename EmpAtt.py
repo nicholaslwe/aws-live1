@@ -19,6 +19,7 @@ db_conn = connections.Connection(
 )
 output = {}
 table = 'employee'
+c = db_conn.cursor()
 
 @app.route('/')
 def EmpAtt():
@@ -32,7 +33,7 @@ def add_attendance():
     date = request.form['date']
     status = request.form['status']
     c.execute("INSERT INTO attendance (name, date, status) VALUES (?, ?, ?)", (name, date, status))
-    conn.commit()
+    db_conn.commit()
     return redirect('/')
 
 @app.route('/edit_attendance/<int:id>', methods=['GET', 'POST'])
@@ -42,7 +43,7 @@ def edit_attendance(id):
         date = request.form['date']
         status = request.form['status']
         c.execute("UPDATE attendance SET name=?, date=?, status=? WHERE id=?", (name, date, status, id))
-        conn.commit()
+        db_conn.commit()
         return redirect('/')
     else:
         c.execute("SELECT * FROM attendance WHERE id=?", (id,))
@@ -52,7 +53,7 @@ def edit_attendance(id):
 @app.route('/delete_attendance/<int:id>')
 def delete_attendance(id):
     c.execute("DELETE FROM attendance WHERE id=?", (id,))
-    conn.commit()
+    db_conn.commit()
     return redirect('/')
 
 if __name__ == '__main__':
