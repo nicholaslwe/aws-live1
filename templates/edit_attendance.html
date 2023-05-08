@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Attendance</title>
+  </head>
+  <body>
+    <h1>Edit Attendance</h1>
+    <form action="/edit_attendance/{{ row[0] }}" method="post">
+      <label for="name">Name:</label>
+      <input type="text" name="name" value="{{ row[1] }}" required>
+      <br><br>
+      <label for="date">Date:</label>
+      <input type="date" name="date" value="{{ row[2] }}" required>
+      <br><br>
+      <label for="status">Status:</label>
+      <select name="status" required>
+        <option value="present" {% if row[3] == 'present' %}selected{% endif %}>Present</option>
+        <option value="absent" {% if row[3] == 'absent' %}selected{% endif %}>Absent</option>
+        <option value="late" {% if row[3] == 'late' %}selected{% endif %}>Late</option>
+      </select>
+      <br><br>
+      <button type="submit">Save Changes</button>
+    </form>
+  </body>
+</html>

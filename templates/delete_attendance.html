@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Attendance</title>
+  </head>
+  <body>
+    <h1>Delete Attendance</h1>
+    <form action="/delete_attendance/{{ row[0] }}" method="post">
+      <p>Are you sure you want to delete the following attendance record?</p>
+      <p><strong>Name:</strong> {{ row[1] }}</p>
+      <p><strong>Date:</strong> {{ row[2] }}</p>
+      <p><strong>Status:</strong> {{ row[3] }}</p>
+      <br>
+      <button type="submit">Delete Record</button>
+    </form>
+  </body>
+</html>
